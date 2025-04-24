@@ -34,3 +34,33 @@ function binarySearch(arr, target) {
   return index.sort((a, b) => a - b);
 }
 // Binary search ____________________________________________________________________
+
+// Merge sort _________________________________________________________________________
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  function merge(l, r) {
+    const result = [];
+    let x = 0;
+    y = 0;
+
+    while (x < l.length && y < r.length) {
+      if (l[x] < r[y]) {
+        result.push(l[x]);
+        x++;
+      } else {
+        result.push(r[y]);
+        y++;
+      }
+    }
+
+    return result.concat(l.slice(x)).concat(r.slice(y));
+  }
+
+  return merge(left, right);
+}
+// Merge sort _________________________________________________________________________
